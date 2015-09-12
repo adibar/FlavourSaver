@@ -103,7 +103,8 @@ module FlavourSaver
     def evaluate_partial(node)
       _context = context
       _context = evaluate_argument(node.context) if node.context
-      if defined?(::Rails)
+      #if defined?(::Rails) #Adi Baron => did not allow rendering partial directly (only via the rails templates flow)
+      if (false) # Adi Baron
         context.send(:render, :partial => node.name, :object => _context)
       else
         partial = Partial.fetch(node.name)
